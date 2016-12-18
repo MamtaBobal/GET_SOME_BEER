@@ -1,4 +1,12 @@
 class BeersController < ApplicationController
+	
+	def index
+		@beers = Beer.all
+		respond_to do |format|
+    		format.json { render json: @beers.as_json(only: [:id, :name]) }
+  		end
+	end
+
 	def type_of_beer
 		if(params[:beer_type]=="IPA")
 			render "IPA"
